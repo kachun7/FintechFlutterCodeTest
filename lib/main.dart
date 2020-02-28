@@ -1,5 +1,5 @@
 import 'package:code_test/presentation/store/bottom_bar_store.dart';
-import 'package:code_test/presentation/view/bottom_bar.dart';
+import 'package:code_test/presentation/page/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
