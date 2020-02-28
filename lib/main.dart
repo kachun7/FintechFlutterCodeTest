@@ -1,13 +1,14 @@
+import 'package:code_test/core/injectable/injectable.dart';
 import 'package:code_test/presentation/store/bottom_bar_store.dart';
 import 'package:code_test/presentation/page/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  configure();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  BottomBarStore _bottomBarStore = BottomBarStore();
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,18 +26,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BottomBar(
-        bottomBarStore: _bottomBarStore,
+        bottomBarStore: getIt<BottomBarStore>(),
       ),
-      // home: Scaffold(
-      //   body: Container(
-      //     child: Center(
-      //       child: Text(
-      //         "Start",
-      //         style: Theme.of(context).textTheme.display2,
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

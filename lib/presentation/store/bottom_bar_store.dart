@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 enum Page {
@@ -5,6 +6,7 @@ enum Page {
   History,
 }
 
+@injectable
 class BottomBarStore extends StatesRebuilder {
   Page currentPage = Page.Loan;
 
