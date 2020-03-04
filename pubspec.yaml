@@ -19,10 +19,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # https://pub.dev/packages/states_rebuilder
   states_rebuilder: ^1.14.1
+  # https://pub.dev/packages/flutter_vector_icons
   flutter_vector_icons: ^0.2.1
+  # https://pub.dev/packages/injectable
   injectable: ^0.2.3
+  # https://pub.dev/packages/get_it
   get_it: ^4.0.0
+  # https://pub.dev/packages/intl
+  intl: ^0.16.1
+  # https://pub.dev/packages/flutter_spinkit
+  flutter_spinkit: ^4.1.2
+  # https://pub.dev/packages/retry
+  retry: ^3.0.0+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,8 +48,12 @@ dev_dependencies:
   test:  1.9.4
   # https://pub.dev/packages/mockito
   mockito: 4.1.1
+  # https://pub.dev/packages/injectable_generator
   injectable_generator: ^0.2.3
+  # https://pub.dev/packages/build_runner
   build_runner: ^1.7.4
+  # https://pub.dev/packages/lint
+  lint: ^1.1.1
 
 
 # For information on the generic Dart part of this file, see the
