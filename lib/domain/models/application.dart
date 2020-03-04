@@ -19,3 +19,4 @@ class Application {
   @override
   String toString() => 'Application{firstName: $firstName, lastName: $lastName, email: $email, loanAmount: $loanAmount}';
 }
+
