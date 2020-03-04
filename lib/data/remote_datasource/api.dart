@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'dart:math';
 
-import 'package:code_test/models/application.dart';
+import 'package:code_test/core/injectable/injectable.dart';
+import 'package:code_test/domain/models/application.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 /// Exception thrown when a timeout towards the api has happened.
@@ -11,7 +14,7 @@ class ApiTimeoutException implements Exception {
   ApiTimeoutException([this.message]);
 
   @override
-  String toString() => (this.message != null ? "ApiTimeoutException: $message" : "ApiTimeoutException");
+  String toString() => message != null ? 'ApiTimeoutException: $message' : 'ApiTimeoutException';
 }
 
 /// Exception thrown when the api is unable to handle the request and an Internal error has occurred.
@@ -22,7 +25,7 @@ class ApiInternalServerException implements Exception {
   ApiInternalServerException([this.message]);
 
   @override
-  String toString() => (this.message != null ? "ApiInternalServerException: $message" : "ApiInternalServerException");
+  String toString() => message != null ? 'ApiInternalServerException: $message' : 'ApiInternalServerException';
 }
 
 ///
@@ -43,30 +46,33 @@ abstract class API {
 ///
 /// [API] implementation with mocked data
 ///
+@Environment(Env.dev)
+@RegisterAs(API)
+@lazySingleton
 class MockAPI extends API {
   // List containing mocked applications.
   final List<Application> _applications = [
-    Application(firstName: "Kjell Börje", lastName: "Zerykier", email: "kjell@example.com", loanAmount: 50000),
-    Application(firstName: "Thomas", lastName: "Danielsson", email: "thomas@example.com", loanAmount: 100000),
-    Application(firstName: "Axel", lastName: "Morell", email: "axel@example.com", loanAmount: 150000),
-    Application(firstName: "Louise", lastName: "Perttuula", email: "louise@example.com", loanAmount: 123456),
-    Application(firstName: "Åsa", lastName: "Wifler", email: "asa@example.com", loanAmount: 250000),
-    Application(firstName: "Ingvar", lastName: "Ehn", email: "ingvar@example.com", loanAmount: 300000),
-    Application(firstName: "Bernt", lastName: "Persson", email: "bernt@example.com", loanAmount: 450000),
-    Application(firstName: "Ingrid", lastName: "Margareta", email: "ingrid@example.com", loanAmount: 500000),
+    Application(firstName: 'Kjell Börje', lastName: 'Zerykier', email: 'kjell@example.com', loanAmount: 50000),
+    Application(firstName: 'Thomas', lastName: 'Danielsson', email: 'thomas@example.com', loanAmount: 100000),
+    Application(firstName: 'Axel', lastName: 'Morell', email: 'axel@example.com', loanAmount: 150000),
+    Application(firstName: 'Louise', lastName: 'Perttuula', email: 'louise@example.com', loanAmount: 123456),
+    Application(firstName: 'Åsa', lastName: 'Wifler', email: 'asa@example.com', loanAmount: 250000),
+    Application(firstName: 'Ingvar', lastName: 'Ehn', email: 'ingvar@example.com', loanAmount: 300000),
+    Application(firstName: 'Bernt', lastName: 'Persson', email: 'bernt@example.com', loanAmount: 450000),
+    Application(firstName: 'Ingrid', lastName: 'Margareta', email: 'ingrid@example.com', loanAmount: 500000),
   ];
   final int _errorChance;
   final int _maxDelayInSeconds;
 
   MockAPI()
       : // There is a 1 in 5 chance of throwing an exception
-        this._errorChance = 5,
-        this._maxDelayInSeconds = 10;
+        _errorChance = 5,
+        _maxDelayInSeconds = 10;
 
   @visibleForTesting
-  MockAPI.test({int errorChance, delay})
-      : this._errorChance = errorChance,
-        this._maxDelayInSeconds = delay;
+  MockAPI.test({int errorChance, int delay})
+      : _errorChance = errorChance,
+        _maxDelayInSeconds = delay;
 
   @override
   Future<Application> submitApplication(Application application) async {
