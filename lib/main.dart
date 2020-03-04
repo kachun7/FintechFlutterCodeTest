@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 void main() {
-  configure();
+  configure(Env.dev);
   runApp(MyApp());
 }
 

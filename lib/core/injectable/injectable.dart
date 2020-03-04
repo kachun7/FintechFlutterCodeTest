@@ -3,7 +3,12 @@ import 'package:injectable/injectable.dart';
 
 import 'injectable.iconfig.dart';
 
-final getIt = GetIt.instance;
+abstract class Env {
+  static const String dev = 'dev';
+  static const String test = 'test';
+}
+
+final GetIt getIt = GetIt.instance;
 
 @injectableInit
-void configure() => $initGetIt(getIt);
+void configure(String environment) => $initGetIt(getIt, environment: environment);
