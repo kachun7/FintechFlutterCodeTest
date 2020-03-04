@@ -41,7 +41,7 @@ class _LoanPageState extends State<LoanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Loan'),
+        title: const Text('New Application'),
       ),
       body: Form(
         key: _formKey,
