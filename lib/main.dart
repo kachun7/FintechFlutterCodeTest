@@ -1,7 +1,12 @@
 import 'package:code_test/core/injectable/injectable.dart';
-import 'package:code_test/presentation/store/bottom_bar_store.dart';
-import 'package:code_test/presentation/page/bottom_bar.dart';
+import 'package:code_test/presentation/page/history_page.dart';
+import 'package:code_test/presentation/page/bottom_bar_page.dart';
+import 'package:code_test/presentation/page/loan_page.dart';
+import 'package:code_test/presentation/store/history_store.dart';
+import 'package:code_test/presentation/store/loan_api_store.dart';
+import 'package:code_test/presentation/store/loan_forrm_store.dart';
 import 'package:flutter/material.dart';
+import 'package:states_rebuilder/states_rebuilder.dart';
 
 void main() {
   configure();
@@ -25,9 +30,25 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: BottomBar(
-        bottomBarStore: getIt<BottomBarStore>(),
-      ),
+      home: BottomBarPage(_getBottomBarWidgets()),
     );
+  }
+
+  List<Widget> _getBottomBarWidgets() {
+    return <Widget>[
+      Injector(
+        inject: [
+          Inject(() => getIt<LoanApiStore>()),
+          Inject(() => getIt<LoanFormStore>()),
+        ],
+        builder: (_) => LoanPage(),
+      ),
+      Injector(
+        inject: [
+          Inject(() => getIt<HistoryStore>()),
+        ],
+        builder: (_) => HistoryPage(),
+      ),
+    ];
   }
 }
